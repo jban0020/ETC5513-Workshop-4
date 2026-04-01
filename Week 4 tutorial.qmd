@@ -1,0 +1,38 @@
+---
+title: "Week 4"
+format: html
+editor: visual
+bibliography: references.bib
+---
+
+
+```{r message=FALSE}
+#| label: fig-penguins-scatter
+#| fig-cap: "Body mass vs. Flipper length for three penguin species."
+#| warning: false
+library(ggplot2)
+library(palmerpenguins)
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal()
+```
+@fig-penguins-scatter represents the relationship between flipper length on the penguins and the body mass
+
+## Adding a table
+
+```{r}
+#| label: tbl-penguin-summary
+#| tbl-cap: "Mean body mass of penguins by species and sex."
+library(dplyr)
+
+penguins |>
+  filter(!is.na(sex)) |>
+  group_by(species, sex) |>
+  summarise(mean_mass = mean(body_mass_g)) |>
+  knitr::kable()
+```
+
+@tbl-penguin-summary shows the summary of the info of th epenguins
+
+## Referenes
